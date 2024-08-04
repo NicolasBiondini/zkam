@@ -10,7 +10,7 @@ contract zkamStorage is Ownable {
 
     constructor() Ownable(msg.sender) {}
 
-    function signHash(bytes32 _signature, address _user) public {
+    function signHash(bytes32 _signature, address _user) public onlyOwner {
         userSignature[_user][_signature] = true;
         signatureUser[_signature] = _user;
     }
@@ -23,7 +23,7 @@ contract zkamStorage is Ownable {
         return signatureUser[_signature];
     }
 
-    function removeSignature(bytes32 _signature, address _user) public {
+    function removeSignature(bytes32 _signature, address _user) public onlyOwner {
         userSignature[_user][_signature] = false;
         signatureUser[_signature] = address(0);
     }
