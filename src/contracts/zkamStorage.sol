@@ -15,16 +15,16 @@ contract zkamStorage is Ownable {
         signatureUser[_signature] = _user;
     }
 
+    function removeSignature(bytes32 _signature, address _user) public onlyOwner {
+        userSignature[_user][_signature] = false;
+        signatureUser[_signature] = address(0);
+    }
+    
     function didUserSign(bytes32 _signature, address _user) public view returns (bool) {
         return userSignature[_user][_signature];
     }
 
     function getUserFromHash(bytes32 _signature) public view returns (address) {
         return signatureUser[_signature];
-    }
-
-    function removeSignature(bytes32 _signature, address _user) public onlyOwner {
-        userSignature[_user][_signature] = false;
-        signatureUser[_signature] = address(0);
     }
 }
