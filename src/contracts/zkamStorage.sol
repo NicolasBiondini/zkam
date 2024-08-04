@@ -1,0 +1,24 @@
+
+contract zkamStorage {
+
+    mapping(address => mapping(bytes32 => bool)) public userSignature;
+    mapping(bytes32 => address) public signatureUser;
+
+    function signHash(bytes32 _signature, address _user) public {
+        userSignature[_user][_signature] = true;
+        signatureUser[_signature] = _user;
+    }
+
+    function didUserSign(bytes32 _signature, address _user) public view returns (bool) {
+        return userSignature[_user][_signature];
+    }
+
+    function getUserFromHash(bytes32 _signature) public view returns (address) {
+        return signatureUser[_signature];
+    }
+
+    function removeSignature(bytes32 _signature, address _user) public {
+        userSignature[_user][_signature] = false;
+        signatureUser[_signature] = address(0);
+    }
+}
