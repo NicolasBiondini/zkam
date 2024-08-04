@@ -5,6 +5,8 @@ import App from "./App.tsx";
 import "./index.css";
 import { Web3ModalProvider } from "./components/WagmiProvider.tsx";
 import CameraCapture from "./components/CameraCapture.tsx";
+import VerifyPage from "./components/VerifyPage.tsx";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Web3ModalProvider>
@@ -12,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/" element={<CameraCapture />} />
-            <Route path="verify" element={<h1 className="h-full">verify</h1>} />
+            <Route path="verify" element={<VerifyPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
