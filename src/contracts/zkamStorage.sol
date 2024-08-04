@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 pragma solidity ^0.8.24;
 
-contract zkamStorage {
+import "../Ownable.sol";
+
+contract zkamStorage is Ownable {
 
     mapping(address => mapping(bytes32 => bool)) public userSignature;
     mapping(bytes32 => address) public signatureUser;
+
+    constructor() Ownable(msg.sender) {}
 
     function signHash(bytes32 _signature, address _user) public {
         userSignature[_user][_signature] = true;
